@@ -1,0 +1,57 @@
+
+<!--link rel="stylesheet" type="text/css" media="screen" href="CSS/demopage.css" /--> 
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
+
+<link href="css/webwidget_menu_glide.css" rel="stylesheet" type="text/css"></link>
+<link rel="stylesheet" href="CSS/style.css" type="text/css" media="screen">
+<script type="text/javascript" src="js/webwidget_menu_glide.js"></script>
+<script type="text/javascript">
+ 
+
+  $(function() {
+                $("#webwidget_menu_glide3").webwidget_menu_glide({menu_width:"100", menu_height:"23", menu_text_size:"12", menu_text_color:"#FFF", menu_sprite_color:"#86C7EF", menu_background_color:"#0F67A1", menu_margin:"2", sprite_speed:"normal", container:"webwidget_menu_glide3" });
+            });
+
+$(document).ready(function() {
+	$("#ajax-content").hide().fadeIn('slow');
+    $("#nav li a").click(function() {
+ 
+        
+        $("#nav li a").removeClass('current');
+        $(this).addClass('current');       
+        $("#dvloader").show();
+        $.ajax({ url: this.href, success: function(html) {
+            $("#dvloader").hide();
+            $("#ajax-content").empty().append(html).hide().fadeIn('slow');
+            }
+        });
+    return false;
+    });
+
+   
+    $("#nav li").click(function(){
+        $("#nav li.current").removeClass("current"); // remove current 
+        $(this).addClass("current"); // set new active
+});
+    
+});
+
+    
+</script>
+<img id="ulpgc" src="images/ulpgc.jpg" style="height: 38px; position: absolute; top: 0; right: 0;" />
+<div id="webwidget_menu_glide3" class="webwidget_menu_glide">
+            <div class="webwidget_menu_glide_sprite"></div>
+<ul id="nav">
+  <li ><img src="images/logo_ulpgc.gif" style="opacity:0.6;width:50px; height:22px;" /></li>
+  <li onclick="senalar(this);"><a href="profile.php">Profesores</a></li>
+  <li onclick="senalar(this);"><a href="add_material.php">Materiales</a></li>
+  <li onclick="senalar(this);"><a href="add_despacho.php">Despachos</a></li>
+</ul>
+<div style="clear: both"></div>
+</div>
+<div id="ajax-content"><img src="images/eii_ulpgc.jpg" style= '-webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em; width:100%; height:600px;'/>
+<div style="display:none" id="dvloader"><img src="images/ajax-loader.gif" /></div>
+</div>
